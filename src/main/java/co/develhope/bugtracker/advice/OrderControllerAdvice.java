@@ -20,6 +20,7 @@ public class OrderControllerAdvice {
 		BaseResponse br = new BaseResponse();
 		br.setStatus(Status.KO);
 		br.setErrorMessage("RESOURCE_NOT_FOUND");
+		return br;
 	}
 	
 	@ExceptionHandler(value = {ConflictException.class})
@@ -28,6 +29,7 @@ public class OrderControllerAdvice {
 		BaseResponse br = new BaseResponse();
 		br.setStatus(Status.KO);
 		br.setErrorMessage("RESOURCE_CONFLICT");
+		return br;
 	}
 
 	

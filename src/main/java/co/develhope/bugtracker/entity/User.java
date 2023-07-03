@@ -16,6 +16,7 @@ public class User {
 
 	private String username;
 	private String password;
+	private Boolean deleted;
 
 	public Integer getId() {
 		return id;
@@ -41,4 +42,11 @@ public class User {
 		this.password = password;
 	}
 
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
 }

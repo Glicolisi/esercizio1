@@ -22,17 +22,18 @@ public class UserService {
 	@Value("${userphisicaldelete}")//CREATA PROPRIETIES PER SCEGLIERE CANCELLAZIONE LOGICA O FISICA
 	private Boolean userPhisicaldelete;
 	public CreateUserResponseDto createUser(CreateUserRequestDto request) {
+
 		Optional<Utente> oUser = userRepository.findByUsername(request.getUsername());
-		if (oUser.isPresent()) {
-			throw new ConflictException();
-		}
-		Utente utente = new Utente();
-		utente.setUsername("Aldo Baglio");
-		utente.setPassword("Password");
-		utente.setDeleted(false);
-		utente =userRepository.save(utente);// Ora l'ID non è null
+		if(oUser.isPresent()){
+		oUser.orElseThrow(() -> new ConflictException());}
+		Utente user = new Utente();
+		user.setUsername("Aldo Baglio");
+		user.setPassword("Password");
+		user.setDeleted(false);
+		user=userRepository.save(user);// Ora l'ID non è null
+
 		CreateUserResponseDto createUserResponseDto = new CreateUserResponseDto();
-		createUserResponseDto.setId(utente.getId());
+		createUserResponseDto.setId(user.getId());
 		return createUserResponseDto ;
 	}
 

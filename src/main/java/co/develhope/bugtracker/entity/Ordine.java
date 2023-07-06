@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Order {
+public class Ordine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Order {
 
 	@ManyToOne
 	@JoinColumn
-	private User user;
+	private Utente utente;
 	
 	public Integer getId() {
 		return id;
@@ -47,12 +47,12 @@ public class Order {
 		this.count = count;
 	}
 	
-	public User getUser() {
-		return user;
+	public Utente getUser() {
+		return utente;
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Utente utente) {
+		this.utente = utente;
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import co.develhope.bugtracker.controller.dto.GetOrderDto;
-import co.develhope.bugtracker.entity.Order;
+import co.develhope.bugtracker.entity.Ordine;
 import co.develhope.bugtracker.exception.NotFoundException;
 import co.develhope.bugtracker.repository.OrderRepository;
 
@@ -19,9 +19,9 @@ public class OrderService {
 	}
 
 	public GetOrderDto getById(Integer id) {
-		Optional<Order> oOrder = orderRepository.findById(id);
+		Optional<Ordine> oOrder = orderRepository.findById(id);
 		if (oOrder.isPresent()) {
-			Order o = oOrder.get();
+			Ordine o = oOrder.get();
 			GetOrderDto dto = new GetOrderDto();
 			dto.setCount(o.getCount());
 			dto.setItem(o.getItem());

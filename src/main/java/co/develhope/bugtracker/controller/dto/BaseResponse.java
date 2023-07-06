@@ -23,7 +23,7 @@ public class BaseResponse {
 	}
 	
 	public enum Status {
-		OK,KO;
+		OK, KO;
 	}
 	
 }

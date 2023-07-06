@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import co.develhope.bugtracker.controller.dto.CreateUserRequestDto;
 import co.develhope.bugtracker.controller.dto.CreateUserResponseDto;
-import co.develhope.bugtracker.entity.User;
+import co.develhope.bugtracker.entity.Utente;
 import co.develhope.bugtracker.repository.UserRepository;
 
 @Service
@@ -19,42 +19,44 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	//@Value("${phisicaldelete}")//CREATA PROPRIETIES PER SCEGLIERE CANCELLAZIONE LOGICA O FISICA
-	private Boolean userPhisicaldelete=true;
+	@Value("${userphisicaldelete}")//CREATA PROPRIETIES PER SCEGLIERE CANCELLAZIONE LOGICA O FISICA
+	private Boolean userPhisicaldelete;
 	public CreateUserResponseDto createUser(CreateUserRequestDto request) {
-		Optional<User> oUser = userRepository.findByUsername(request.getUsername());
-		 oUser.orElseThrow(() -> new ConflictException());
-		User user = new User();
-		user.setUsername("Aldo Baglio");
-		user.setPassword("Password");
-		user.setDeleted(false);
-		user=userRepository.save(user);// Ora l'ID non è null
+		Optional<Utente> oUser = userRepository.findByUsername(request.getUsername());
+		if (oUser.isPresent()) {
+			throw new ConflictException();
+		}
+		Utente utente = new Utente();
+		utente.setUsername("Aldo Baglio");
+		utente.setPassword("Password");
+		utente.setDeleted(false);
+		utente =userRepository.save(utente);// Ora l'ID non è null
 		CreateUserResponseDto createUserResponseDto = new CreateUserResponseDto();
-		createUserResponseDto.setId(user.getId());
+		createUserResponseDto.setId(utente.getId());
 		return createUserResponseDto ;
 	}
 
 	
-	private User fromRequestToEntity(CreateUserRequestDto request) {
-		User user = new User();
-		user.setPassword(request.getPassword());
-		user.setUsername(request.getUsername());
-		return user;
+	private Utente fromRequestToEntity(CreateUserRequestDto request) {
+		Utente utente = new Utente();
+		utente.setPassword(request.getPassword());
+		utente.setUsername(request.getUsername());
+		return utente;
 	}
 	
-	private CreateUserResponseDto fromEntityToResponse(User user) {
+	private CreateUserResponseDto fromEntityToResponse(Utente utente) {
 		CreateUserResponseDto createUserResponseDto = new CreateUserResponseDto();
-		createUserResponseDto.setId(user.getId());
+		createUserResponseDto.setId(utente.getId());
 		return createUserResponseDto;
 	}
 
     public BaseResponse deleteUser(DeleteUserRequestDto delete) {
 
-		Optional<User> user = userRepository.findById(delete.getId());
+		Optional<Utente> user = userRepository.findById(delete.getId());
 		if(user.isEmpty()) {
 			throw new RuntimeException(); //NIENTE ELSE PERCHé TANTO ESCE CON L'ECCEZIONE
 		}
-			User useru = user.get();
+			Utente useru = user.get();
 
 		if(userPhisicaldelete){
 			userRepository.delete(useru);

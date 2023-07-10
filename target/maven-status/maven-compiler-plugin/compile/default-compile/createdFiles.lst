@@ -1,0 +1,2 @@
+co\develhope\bugtracker\controller\dto\ChangePasswordRequestDto.class
+co\develhope\bugtracker\exception\ForbiddenException.class

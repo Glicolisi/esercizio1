@@ -2,15 +2,13 @@ package co.develhope.bugtracker.service;
 
 import java.util.Optional;
 
-import co.develhope.bugtracker.controller.dto.BaseResponse;
-import co.develhope.bugtracker.controller.dto.DeleteUserRequestDto;
+import co.develhope.bugtracker.controller.dto.*;
 import co.develhope.bugtracker.exception.ConflictException;
+import co.develhope.bugtracker.exception.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import co.develhope.bugtracker.controller.dto.CreateUserRequestDto;
-import co.develhope.bugtracker.controller.dto.CreateUserResponseDto;
 import co.develhope.bugtracker.entity.Utente;
 import co.develhope.bugtracker.repository.UserRepository;
 
@@ -67,4 +65,24 @@ public class UserService {
 		}
 		return new BaseResponse();
     }
+
+	public BaseResponse changePassword(ChangePasswordRequestDto request) {
+		Optional<Utente> outente = userRepository.findByUsername(request.getUsername());
+
+		if(outente.isEmpty()){
+			throw new RuntimeException("user with username " + request.getUsername() + " not found");
+		}
+
+		Utente utente = outente.get();
+
+		if(utente.getPassword().equals(request.getOldPassword())){
+			utente.setPassword(request.getNewPassword());
+
+			userRepository.save(utente);
+			return new BaseResponse();
+		} else {
+			throw new ForbiddenException("wrong password");
+		}
+
+	}
 }

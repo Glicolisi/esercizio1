@@ -1,0 +1,17 @@
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\entity\Utente.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\service\OrderService.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\advice\OrderControllerAdvice.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\AcquistiApplication.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\dto\BaseResponse.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\dto\CreateUserResponseDto.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\repository\OrderRepository.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\repository\UserRepository.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\exception\ConflictException.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\OrderController.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\dto\DeleteUserRequestDto.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\entity\Ordine.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\dto\CreateUserRequestDto.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\dto\GetOrderDto.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\exception\NotFoundException.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\service\UserService.java
+C:\Users\filip\Intellij_java\esercizio1\src\main\java\co\develhope\bugtracker\controller\UserController.java

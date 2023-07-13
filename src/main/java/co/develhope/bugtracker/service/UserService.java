@@ -1,10 +1,14 @@
 package co.develhope.bugtracker.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import co.develhope.bugtracker.controller.dto.*;
 import co.develhope.bugtracker.exception.ConflictException;
 import co.develhope.bugtracker.exception.ForbiddenException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,8 @@ import co.develhope.bugtracker.repository.UserRepository;
 @Service
 public class UserService {
 
+	@Autowired
+	private EntityManager entityManager;
 	@Autowired
 	private UserRepository userRepository;
 	@Value("${userphisicaldelete}")//CREATA PROPRIETIES PER SCEGLIERE CANCELLAZIONE LOGICA O FISICA
@@ -86,4 +92,21 @@ public class UserService {
 		}
 
 	}
+
+	public List<UserAspirapolvereResponseDto> getAspirapolvere() {
+	//Tutti gli utenti che hanno fatto un ordine->Poi si seleziona gli ordine con aspirapolvere
+	 Query query = entityManager.createNativeQuery("SELECT U.* FROM UTENTE U INNER JOIN ORDINE O ON U.UTENTE U.ID = O.UTENTE WHERE O.ITEM = 'ASPIRAPOLVERE' ", Utente.class);
+	 //L'oggetto query permette di eseguire la query
+	 List<Utente> utenti = query.getResultList();
+	 List<Utente> utenti2 = new ArrayList<>();//Discorso sulle enclosure e sul fatto che le lambda utilizzano solo final
+
+
+			utenti.stream().forEach(item->{
+				if (!utenti2.contains(item)) {
+					utenti2.add(item);
+				}
+			});
+			return null;
+		}
+
 }

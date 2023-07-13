@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import co.develhope.bugtracker.service.UserService;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -31,6 +33,11 @@ public class UserController {
 	@PutMapping("/user/change-password")
 	public BaseResponse changePassword(@RequestBody ChangePasswordRequestDto request){
 		return userService.changePassword(request);
+	}
+
+	@GetMapping("/user/aspirapolvere")
+	public List<UserAspirapolvereResponseDto> getAspirapolvere (){
+		return UserService.getAspirapolvere;
 	}
 	
 }

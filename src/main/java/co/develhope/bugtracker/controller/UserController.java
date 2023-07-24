@@ -37,7 +37,7 @@ public class UserController {
 
 	@GetMapping("/user/aspirapolvere")
 	public List<UserAspirapolvereResponseDto> getAspirapolvere (){
-		return UserService.getAspirapolvere;
+		return userService.getAspirapolvere();
 	}
 	
 }

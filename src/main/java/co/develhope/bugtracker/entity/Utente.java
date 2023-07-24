@@ -1,10 +1,8 @@
 package co.develhope.bugtracker.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table
@@ -17,6 +15,18 @@ public class Utente {
 	private String username;
 	private String password;
 	private Boolean deleted;
+
+
+	@OneToMany(mappedBy = "utente")
+	private List<Ordine> ordini;
+
+	public List<Ordine> getOrdini() {
+		return ordini;
+	}
+
+	public void setOrdini(List<Ordine> ordini) {
+		this.ordini = ordini;
+	}
 
 	public Integer getId() {
 		return id;
